@@ -1,6 +1,6 @@
 {% set name = "opentelemetry-proto" %}
-{% set version = "1.12.0" %}
-{% set sha256 = "c7f3f2dab9060769ac3ca67b147a0433d7326d5622eed6ef8039afebd80591e3" %}
+{% set version = "1.23.0" %}
+{% set sha256 = "e6aaf8b7ace8d021942d546161401b83eed90f9f2cc6f13275008cea730e4651" %}
 
 package:
   name: {{ name|lower }}
