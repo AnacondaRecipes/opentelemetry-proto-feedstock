@@ -21,7 +21,7 @@ requirements:
     - python
     - hatchling
   run:
-    - protobuf >=3.19,<4
+    - protobuf >=3.19,<5
     - python
 
 test:
