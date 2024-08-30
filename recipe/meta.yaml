@@ -1,6 +1,5 @@
 {% set name = "opentelemetry-proto" %}
-{% set version = "1.23.0" %}
-{% set sha256 = "e6aaf8b7ace8d021942d546161401b83eed90f9f2cc6f13275008cea730e4651" %}
+{% set version = "1.26.0" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_proto-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: c5c18796c0cab3751fc3b98dee53855835e90c0422924b484432ac852d93dc1e
+  patches:
+    # added to avoid pip._internal.exceptions.MetadataGenerationFailed: metadata generation failed
+    - patches/0000-fix-classifier-clash-in-pyproject.patch
 
 build:
   number: 0
@@ -16,6 +18,9 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
+  build:
+    - patch # [not win]
+    - m2-patch  # [win]
   host:
     - pip
     - python
@@ -48,5 +53,7 @@ about:
     it is natively supported by a number of vendors.
 
 extra:
+  skip-lints:
+    - invalid_url
   recipe-maintainers:
     - mariusvniekerk
