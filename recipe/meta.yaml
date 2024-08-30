@@ -18,6 +18,9 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
+  build:
+    - patch # [not win]
+    - m2-patch  # [win]
   host:
     - pip
     - python
@@ -50,5 +53,7 @@ about:
     it is natively supported by a number of vendors.
 
 extra:
+  skip-lints:
+    - invalid_url
   recipe-maintainers:
     - mariusvniekerk
