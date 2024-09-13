@@ -53,6 +53,11 @@ about:
     it is natively supported by a number of vendors.
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/49522
+    reason: Dependency for chainlit
+  recipe-maintainers:
+    - ianaobi
   skip-lints:
     - invalid_url
   recipe-maintainers:
