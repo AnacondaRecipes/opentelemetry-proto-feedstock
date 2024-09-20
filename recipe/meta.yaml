@@ -1,27 +1,28 @@
 {% set name = "opentelemetry-proto" %}
-{% set version = "1.12.0" %}
-
+{% set version = "1.27.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry-proto-{{ version }}.tar.gz
-  sha256: c7f3f2dab9060769ac3ca67b147a0433d7326d5622eed6ef8039afebd80591e3
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_proto-{{ version }}.tar.gz
+  sha256: 33c9345d91dafd8a74fc3d7576c5a38f18b7fdf8d02983ac67485386132aedd6
 
 build:
-  number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+  number: 0
 
 requirements:
   host:
+    - python >=3.8
     - pip
-    - python >=3.6
+    - hatchling
   run:
-    - protobuf ~=3.13
-    - python >=3.6
+    - python >=3.8
+    - protobuf >=3.19,<5.0
 
 test:
   imports:
@@ -37,6 +38,8 @@ about:
   summary: OpenTelemetry Python Proto
   license: Apache-2.0
   license_file: LICENSE
+  dev_url: https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-proto
+  doc_url: https://github.com/open-telemetry/opentelemetry-python/tree/main/docs
 
 extra:
   anaconda-services:
@@ -45,4 +48,5 @@ extra:
   recipe-maintainers:
     - ianaobi
   recipe-maintainers:
+    - rxm7706
     - mariusvniekerk
