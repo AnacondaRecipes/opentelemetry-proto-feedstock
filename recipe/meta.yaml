@@ -20,6 +20,7 @@ requirements:
     - python >=3.8
     - pip
     - hatchling
+    - wheel
   run:
     - python >=3.8
     - protobuf >=3.19,<5.0
