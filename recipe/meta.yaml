@@ -1,5 +1,5 @@
 {% set name = "opentelemetry-proto" %}
-{% set version = "1.26.0" %}
+{% set version = "1.30.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,26 +7,21 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_proto-{{ version }}.tar.gz
-  sha256: c5c18796c0cab3751fc3b98dee53855835e90c0422924b484432ac852d93dc1e
-  patches:
-    # added to avoid pip._internal.exceptions.MetadataGenerationFailed: metadata generation failed
-    - patches/0000-fix-classifier-clash-in-pyproject.patch
+  sha256: afe5c9c15e8b68d7c469596e5b32e8fc085eb9febdd6fb4e20924a93a0389179
 
 build:
   number: 0
   skip: true  # [py<38]
+  skip: true  # [s390x]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
-  build:
-    - patch # [not win]
-    - m2-patch  # [win]
   host:
     - pip
     - python
     - hatchling
   run:
-    - protobuf >=3.19,<5
+    - protobuf >=5.0,<6.0
     - python
 
 test:
