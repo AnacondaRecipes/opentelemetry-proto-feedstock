@@ -1,5 +1,5 @@
 {% set name = "opentelemetry-proto" %}
-{% set version = "1.27.0" %}
+{% set version = "1.26.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,23 +7,21 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_proto-{{ version }}.tar.gz
-  sha256: 33c9345d91dafd8a74fc3d7576c5a38f18b7fdf8d02983ac67485386132aedd6
+  sha256: c5c18796c0cab3751fc3b98dee53855835e90c0422924b484432ac852d93dc1e
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-
   number: 0
 
 requirements:
   host:
-    - python >=3.8
+    - python
     - pip
     - hatchling
-    - wheel
   run:
-    - python >=3.8
-    - protobuf >=3.19,<5.0
+    - python
+    - protobuf
 
 test:
   imports:
@@ -39,16 +37,13 @@ about:
   summary: OpenTelemetry Python Proto
   license: Apache-2.0
   license_file: LICENSE
-  dev_url: https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-proto
-  doc_url: https://github.com/open-telemetry/opentelemetry-python/tree/main/docs
 
 extra:
   anaconda-services:
-    ref: https://anaconda.zendesk.com/agent/tickets/49522
-    reason: Dependency for chainlit
+    ref: https://anaconda.zendesk.com/agent/tickets/70829
+    reason: Dependency for chromadb
   recipe-maintainers:
     - ianaobi
-    - bkreider
   recipe-maintainers:
     - rxm7706
     - mariusvniekerk
