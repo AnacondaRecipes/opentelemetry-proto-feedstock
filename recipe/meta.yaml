@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_proto-{{ version }}.tar.gz
-  sha256: d93e9c2b444e63d1064fb50ae035bcb09e5822274f1683886970d2734208e790
+  sha256: c5c18796c0cab3751fc3b98dee53855835e90c0422924b484432ac852d93dc1e
 
 build:
   noarch: python
