@@ -1,5 +1,5 @@
 {% set name = "opentelemetry-proto" %}
-{% set version = "1.40.0" %}
+{% set version = "1.38.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/open-telemetry/{{ name.split('-')[0] }}-python/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 8542e1cdfd9faaa931e0c24906855f6a40149e6520177926728532cff4315a94
+  sha256: c7e941a92e52dc876d60177a81d4d44951a06a70f324a5ccfd956a18725885b9
 
 build:
   number: 0
@@ -61,5 +61,7 @@ about:
   dev_url: https://github.com/open-telemetry/opentelemetry-python
 
 extra:
+  skip-lints:
+    - invalid_url
   recipe-maintainers:
     - mariusvniekerk
