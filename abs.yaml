@@ -1,4 +1,1 @@
 staging_channel_upload_target: otel-1.40.0-staging
-
-build_env_vars:
-  ANACONDA_ROCKET_ENABLE_PY314 : yes
