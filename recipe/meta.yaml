@@ -61,7 +61,5 @@ about:
   dev_url: https://github.com/open-telemetry/opentelemetry-python
 
 extra:
-  skip-lints:
-    - invalid_url
   recipe-maintainers:
     - mariusvniekerk
