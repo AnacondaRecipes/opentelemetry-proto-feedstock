@@ -12,7 +12,7 @@ source:
     - patches/0001-relax-protobuf-upper-bound.patch
 
 build:
-  number: 0
+  number: 4
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   skip: true  # [py<36]
 
