@@ -1,39 +1,46 @@
 {% set name = "opentelemetry-proto" %}
 {% set version = "1.12.0" %}
-{% set sha256 = "c7f3f2dab9060769ac3ca67b147a0433d7326d5622eed6ef8039afebd80591e3" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry-proto-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: c7f3f2dab9060769ac3ca67b147a0433d7326d5622eed6ef8039afebd80591e3
+  patches:
+    - patches/0001-relax-protobuf-upper-bound.patch
 
 build:
   number: 0
-  # noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   skip: true  # [py<36]
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
     - pip
     - python
-    - setuptools
+    - setuptools <81
     - wheel
   run:
-    - protobuf >=3.13,<4
     - python
+    - protobuf >=3.13,<4  # [py<313]
+    # Relax upper-bound to build for py313+
+    - protobuf >=3.13,<6  # [py>=313]
+    - setuptools <81
 
 test:
+  source_files:
+    - tests
   imports:
     - opentelemetry
     - opentelemetry.proto
   commands:
     - pip check
+    - pytest -v tests
   requires:
     - pip
+    - pytest
 
 about:
   summary: OpenTelemetry Python / Proto
