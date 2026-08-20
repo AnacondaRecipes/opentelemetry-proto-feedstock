@@ -10,7 +10,7 @@ source:
   sha256: 92b8082f603dbacf2f9175fae57e6c8f07fddb70e6aeff66aeb7a7b310242747
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install ./{{ name }} -vv --no-deps --no-build-isolation
   skip: true  # [py<310]
 
@@ -18,6 +18,7 @@ requirements:
   host:
     - pip
     - python
+    - protobuf 7.35.1
     - hatchling
   run:
     - python
