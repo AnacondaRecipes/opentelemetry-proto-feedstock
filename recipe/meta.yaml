@@ -10,9 +10,15 @@ source:
   sha256: 7fa3279ff22ee1322ab9e92290d4b0547e19ce164ff3ebbbeb3fcdaf96f0f2a4
 
 build:
-  number: 0
-  script: {{ PYTHON }} -m pip install ./{{ name }} -vv --no-deps --no-build-isolation
+  number: 1
+  script: {{ PYTHON }} -m pip install ./{{ name }} -vv --no-deps --no-build-isolation  # [not win]
+  script: {{ PYTHON }} -m pip install ./{{ name }} -vv --no-deps --no-build-isolation --no-compile  # [win]
   skip: true  # [py<310]
+  # Skip compiling byte code to avoid extremely long paths in the conda package cache
+  # Due to the nested structure of this package and the long build string, environments
+  # can exceed the Windows path limit if installed into LOCALAPPDATA
+  skip_compile_pyc:  # [win]
+    - "*"            # [win]
 
 requirements:
   host:
