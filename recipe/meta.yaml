@@ -1,5 +1,5 @@
 {% set name = "opentelemetry-proto" %}
-{% set version = "1.45.1" %}
+{% set version = "1.43.0" %}
 
 package:
   name: {{ name }}
@@ -7,12 +7,18 @@ package:
 
 source:
   url: https://github.com/open-telemetry/{{ name.split('-')[0] }}-python/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 7fa3279ff22ee1322ab9e92290d4b0547e19ce164ff3ebbbeb3fcdaf96f0f2a4
+  sha256: 92b8082f603dbacf2f9175fae57e6c8f07fddb70e6aeff66aeb7a7b310242747
 
 build:
-  number: 0
-  script: {{ PYTHON }} -m pip install ./{{ name }} -vv --no-deps --no-build-isolation
+  number: 1
+  script: {{ PYTHON }} -m pip install ./{{ name }} -vv --no-deps --no-build-isolation  # [not win]
+  script: {{ PYTHON }} -m pip install ./{{ name }} -vv --no-deps --no-build-isolation --no-compile  # [win]
   skip: true  # [py<310]
+  # Skip compiling byte code to avoid extremely long paths in the conda package cache
+  # Due to the nested structure of this package and the long build string, environments
+  # can exceed the Windows path limit if installed into LOCALAPPDATA
+  skip_compile_pyc:  # [win]
+    - "*"            # [win]
 
 requirements:
   host:
