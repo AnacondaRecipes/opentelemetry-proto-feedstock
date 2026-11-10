@@ -1,5 +1,5 @@
 {% set name = "opentelemetry-proto" %}
-{% set version = "1.45.1" %}
+{% set version = "1.45.2" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/open-telemetry/{{ name.split('-')[0] }}-python/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 7fa3279ff22ee1322ab9e92290d4b0547e19ce164ff3ebbbeb3fcdaf96f0f2a4
+  sha256: 6ce748d196e7cfbf2df5a31a88395b944321506bfec3af5351336e0ed2238f35
 
 build:
   number: 0
